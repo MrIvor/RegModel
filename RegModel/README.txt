@@ -1,5 +1,8 @@
+### Copright
+----------------
 Autor: qingfeng sun
 Mail: qf.sun@foxmail.com
+
 ### Requirements
 ----------------
 * Perl 5.14+
