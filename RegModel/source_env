@@ -1,0 +1,6 @@
+#!/bin/sh
+export GEN_UVM_HOME=`pwd`
+export PATH=$GEN_UVM_HOME/code:$PATH
+export IREGGEN=/opt/Cadence/Incisive14/tools/methodology/iregGen/bin
+export PATH=$IREGGEN:$PATH
+export UVM_HOME=/home/IC/Desktop/gen_uvm_model/uvm-1.1d

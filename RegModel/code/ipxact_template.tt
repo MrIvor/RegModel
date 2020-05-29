@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<spirit:component xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009 http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009/index.xsd">
+    <spirit:vendor>accellera.com</spirit:vendor>
+    <spirit:library>migration</spirit:library>
+    <spirit:version>1.0</spirit:version>
+    <spirit:memoryMaps>
+        <spirit:memoryMap>
+            <spirit:name>top_reg</spirit:name>
+
+            <spirit:addressBlock>
+              <spirit:name>[% block_name %]</spirit:name>
+                    <spirit:baseAddress>[% baseaddr %]</spirit:baseAddress>
+                    <spirit:width>32</spirit:width>
+                    <spirit:range>[% range %]</spirit:range>
+                            [% FOREACH register = registers -%]
+                            <spirit:register>
+                                <spirit:name>[% register.reg_name %]</spirit:name>
+                                    <spirit:addressOffset>[% register.addr_offset %]</spirit:addressOffset>
+                                    <spirit:size>[% register.size %]</spirit:size>
+                                    [%- IF register.access %]
+                                    <spirit:access>[% register.access %]</spirit:access>
+                                    [%- END %]
+                                    [%- IF register.reset %]
+                                    <spirit:reset>
+                                        <spirit:value>[% register.reset %]</spirit:value>
+                                    </spirit:reset>
+                                    [%- END %]
+
+                                    [% FOREACH field = register.fields -%]
+                                    <spirit:field>
+                                        <spirit:name>[% field.field_name %]</spirit:name>
+                                        [%- IF field.desc %]
+                                        <spirit:description>[% field.desc %]</spirit:description>
+                                        [%- END %]
+                                        <spirit:bitOffset>[% field.bit_offset %]</spirit:bitOffset>
+                                                <spirit:bitWidth>[% field.width %]</spirit:bitWidth>
+                                                [%- IF field.access %]
+                                            <spirit:access>[% field.access %]</spirit:access>
+                                            [%- END %]
+                                    </spirit:field>
+                                    [% END -%]
+                                        </spirit:register>
+                                    [% END -%]
+                </spirit:addressBlock>
+        </spirit:memoryMap>
+    </spirit:memoryMaps>
+</spirit:component>

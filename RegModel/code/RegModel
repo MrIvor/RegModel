@@ -1,0 +1,18 @@
+#!/bin/sh
+rm -rf  ipxact.xml
+echo "$#"
+if [ $# == 0 ]; then
+  echo "Must input excel file path !!!"
+  exit 1
+fi
+perl  $GEN_UVM_HOME/code/gen_uvm_main.pl -input $1  -output  ipxact.xml
+
+if [ -f "ipxact.xml" ]; then
+  echo "exist ipxact file!!"
+else
+  echo "NO exist ipxact file!!"
+fi
+
+iregGen -i ipxact.xml
+
+
