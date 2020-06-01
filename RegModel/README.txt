@@ -1,4 +1,4 @@
-### Copright
+### Coperight
 ----------------
 Autor: qingfeng sun
 Mail: qf.sun@foxmail.com
