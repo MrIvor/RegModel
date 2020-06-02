@@ -7,12 +7,14 @@
         <spirit:memoryMap>
             <spirit:name>top_reg</spirit:name>
 
+          [% FOREACH block = blocks -%]
+
             <spirit:addressBlock>
-              <spirit:name>[% block_name %]</spirit:name>
-                    <spirit:baseAddress>[% baseaddr %]</spirit:baseAddress>
+              <spirit:name>[% block.block_name %]</spirit:name>
+                    <spirit:baseAddress>[% block.baseaddr %]</spirit:baseAddress>
                     <spirit:width>32</spirit:width>
-                    <spirit:range>[% range %]</spirit:range>
-                            [% FOREACH register = registers -%]
+                    <spirit:range>[% block.range %]</spirit:range>
+                            [% FOREACH register = block.registers -%]
                             <spirit:register>
                                 <spirit:name>[% register.reg_name %]</spirit:name>
                                     <spirit:addressOffset>[% register.addr_offset %]</spirit:addressOffset>
@@ -39,9 +41,12 @@
                                             [%- END %]
                                     </spirit:field>
                                     [% END -%]
-                                        </spirit:register>
-                                    [% END -%]
-                </spirit:addressBlock>
+                             </spirit:register>
+                             [% END -%]
+            </spirit:addressBlock>
+            [% END -%]
+
+
         </spirit:memoryMap>
     </spirit:memoryMaps>
 </spirit:component>

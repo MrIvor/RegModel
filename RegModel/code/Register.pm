@@ -1,3 +1,7 @@
+#====================================================
+#   Autor: qingfeng sun
+#   Mail: qf.sun@foxmail.com
+#====================================================
 package Register;
 use List::Util qw(min);
 use List::Util qw(max);
@@ -18,7 +22,7 @@ sub new {
 }
 
 sub add_field {
-    my $self = shift;  
+    my $self = shift;
     my ($field_name, $bit_offset, $width, $reset, $access) = @_;
     my $field = {
         field_name => $field_name,
@@ -90,7 +94,7 @@ sub parse_range {
     } else {
       die "pls check $block_name -> $reg_name -> bit ranges !!! \n";
     }
-    if($ranges[0] > $ranges[1]) {
+    if($size == 2 && $ranges[0] > $ranges[1]) {
       die "pls check $block_name -> $reg_name -> BigEndian, shoud be LittleEndian !!! \n";
     }
     $min_range = min(@ranges);

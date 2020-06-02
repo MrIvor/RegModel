@@ -7,75 +7,265 @@
         <spirit:memoryMap>
             <spirit:name>top_reg</spirit:name>
 
+          
             <spirit:addressBlock>
               <spirit:name>SPI_TOP</spirit:name>
                     <spirit:baseAddress>0xFA12345678</spirit:baseAddress>
                     <spirit:width>32</spirit:width>
-                    <spirit:range>1</spirit:range>
+                    <spirit:range>3</spirit:range>
                                                         <spirit:register>
                                 <spirit:name>spi_ctrl</spirit:name>
-                                    <spirit:addressOffset>0xACDB</spirit:addressOffset>
+                                    <spirit:addressOffset>0x0004</spirit:addressOffset>
                                     <spirit:size>32</spirit:size>
                                     <spirit:reset>
                                         <spirit:value>3208179</spirit:value>
                                     </spirit:reset>
 
                                                                         <spirit:field>
-                                        <spirit:name>field1</spirit:name>
+                                        <spirit:name>spi_ctrl0</spirit:name>
                                         <spirit:bitOffset>0</spirit:bitOffset>
                                                 <spirit:bitWidth>2</spirit:bitWidth>
                                             <spirit:access>read-write</spirit:access>
                                     </spirit:field>
                                                                         <spirit:field>
-                                        <spirit:name>field2</spirit:name>
+                                        <spirit:name>spi_ctrl1</spirit:name>
                                         <spirit:bitOffset>2</spirit:bitOffset>
                                                 <spirit:bitWidth>2</spirit:bitWidth>
                                             <spirit:access>read-only</spirit:access>
                                     </spirit:field>
                                                                         <spirit:field>
-                                        <spirit:name>field3</spirit:name>
+                                        <spirit:name>spi_ctrl2</spirit:name>
                                         <spirit:bitOffset>4</spirit:bitOffset>
                                                 <spirit:bitWidth>2</spirit:bitWidth>
                                             <spirit:access>read-only</spirit:access>
                                     </spirit:field>
                                                                         <spirit:field>
-                                        <spirit:name>field4</spirit:name>
+                                        <spirit:name>spi_ctrl3</spirit:name>
                                         <spirit:bitOffset>6</spirit:bitOffset>
                                                 <spirit:bitWidth>2</spirit:bitWidth>
                                             <spirit:access>read-only</spirit:access>
                                     </spirit:field>
                                                                         <spirit:field>
-                                        <spirit:name>field5</spirit:name>
+                                        <spirit:name>spi_ctrl4</spirit:name>
                                         <spirit:bitOffset>8</spirit:bitOffset>
                                                 <spirit:bitWidth>2</spirit:bitWidth>
                                             <spirit:access>read-write</spirit:access>
                                     </spirit:field>
                                                                         <spirit:field>
-                                        <spirit:name>field6</spirit:name>
+                                        <spirit:name>spi_ctrl5</spirit:name>
                                         <spirit:bitOffset>10</spirit:bitOffset>
                                                 <spirit:bitWidth>2</spirit:bitWidth>
                                             <spirit:access>read-only</spirit:access>
                                     </spirit:field>
                                                                         <spirit:field>
-                                        <spirit:name>field7</spirit:name>
+                                        <spirit:name>spi_ctrl6</spirit:name>
                                         <spirit:bitOffset>12</spirit:bitOffset>
                                                 <spirit:bitWidth>2</spirit:bitWidth>
                                             <spirit:access>read-only</spirit:access>
                                     </spirit:field>
                                                                         <spirit:field>
-                                        <spirit:name>field8</spirit:name>
+                                        <spirit:name>spi_ctrl7</spirit:name>
                                         <spirit:bitOffset>14</spirit:bitOffset>
                                                 <spirit:bitWidth>6</spirit:bitWidth>
                                             <spirit:access>read-only</spirit:access>
                                     </spirit:field>
                                                                         <spirit:field>
-                                        <spirit:name>field9</spirit:name>
+                                        <spirit:name>spi_ctrl8</spirit:name>
                                         <spirit:bitOffset>20</spirit:bitOffset>
                                                 <spirit:bitWidth>12</spirit:bitWidth>
                                             <spirit:access>read-only</spirit:access>
                                     </spirit:field>
-                                                                            </spirit:register>
-                                                    </spirit:addressBlock>
+                                                                 </spirit:register>
+                                                         <spirit:register>
+                                <spirit:name>spi_dat</spirit:name>
+                                    <spirit:addressOffset>0x0008</spirit:addressOffset>
+                                    <spirit:size>32</spirit:size>
+                                    <spirit:reset>
+                                        <spirit:value>6295311</spirit:value>
+                                    </spirit:reset>
+
+                                                                        <spirit:field>
+                                        <spirit:name>spi_dat0</spirit:name>
+                                        <spirit:bitOffset>0</spirit:bitOffset>
+                                                <spirit:bitWidth>1</spirit:bitWidth>
+                                            <spirit:access>read-write</spirit:access>
+                                    </spirit:field>
+                                                                        <spirit:field>
+                                        <spirit:name>spi_dat1</spirit:name>
+                                        <spirit:bitOffset>1</spirit:bitOffset>
+                                                <spirit:bitWidth>1</spirit:bitWidth>
+                                            <spirit:access>read-only</spirit:access>
+                                    </spirit:field>
+                                                                        <spirit:field>
+                                        <spirit:name>spi_dat2</spirit:name>
+                                        <spirit:bitOffset>2</spirit:bitOffset>
+                                                <spirit:bitWidth>6</spirit:bitWidth>
+                                            <spirit:access>read-only</spirit:access>
+                                    </spirit:field>
+                                                                        <spirit:field>
+                                        <spirit:name>spi_dat3</spirit:name>
+                                        <spirit:bitOffset>8</spirit:bitOffset>
+                                                <spirit:bitWidth>2</spirit:bitWidth>
+                                            <spirit:access>read-only</spirit:access>
+                                    </spirit:field>
+                                                                        <spirit:field>
+                                        <spirit:name>spi_dat4</spirit:name>
+                                        <spirit:bitOffset>10</spirit:bitOffset>
+                                                <spirit:bitWidth>11</spirit:bitWidth>
+                                            <spirit:access>read-write</spirit:access>
+                                    </spirit:field>
+                                                                        <spirit:field>
+                                        <spirit:name>spi_dat5</spirit:name>
+                                        <spirit:bitOffset>21</spirit:bitOffset>
+                                                <spirit:bitWidth>11</spirit:bitWidth>
+                                            <spirit:access>read-only</spirit:access>
+                                    </spirit:field>
+                                                                 </spirit:register>
+                                                         <spirit:register>
+                                <spirit:name>spi_clk</spirit:name>
+                                    <spirit:addressOffset>0x000A</spirit:addressOffset>
+                                    <spirit:size>32</spirit:size>
+                                    <spirit:reset>
+                                        <spirit:value>6442450947</spirit:value>
+                                    </spirit:reset>
+
+                                                                        <spirit:field>
+                                        <spirit:name>spi_clk0</spirit:name>
+                                        <spirit:bitOffset>0</spirit:bitOffset>
+                                                <spirit:bitWidth>1</spirit:bitWidth>
+                                            <spirit:access>read-write</spirit:access>
+                                    </spirit:field>
+                                                                        <spirit:field>
+                                        <spirit:name>spi_clk1</spirit:name>
+                                        <spirit:bitOffset>1</spirit:bitOffset>
+                                                <spirit:bitWidth>30</spirit:bitWidth>
+                                            <spirit:access>read-only</spirit:access>
+                                    </spirit:field>
+                                                                        <spirit:field>
+                                        <spirit:name>spi_clk2</spirit:name>
+                                        <spirit:bitOffset>31</spirit:bitOffset>
+                                                <spirit:bitWidth>1</spirit:bitWidth>
+                                            <spirit:access>read-only</spirit:access>
+                                    </spirit:field>
+                                                                 </spirit:register>
+                                         </spirit:addressBlock>
+            
+            <spirit:addressBlock>
+              <spirit:name>UART_TOP</spirit:name>
+                    <spirit:baseAddress>0xEEEEAAAA</spirit:baseAddress>
+                    <spirit:width>32</spirit:width>
+                    <spirit:range>2</spirit:range>
+                                                        <spirit:register>
+                                <spirit:name>uart_ctrl</spirit:name>
+                                    <spirit:addressOffset>0x2680</spirit:addressOffset>
+                                    <spirit:size>32</spirit:size>
+                                    <spirit:reset>
+                                        <spirit:value>3208179</spirit:value>
+                                    </spirit:reset>
+
+                                                                        <spirit:field>
+                                        <spirit:name>uart_ctrl0</spirit:name>
+                                        <spirit:bitOffset>0</spirit:bitOffset>
+                                                <spirit:bitWidth>2</spirit:bitWidth>
+                                            <spirit:access>read-write</spirit:access>
+                                    </spirit:field>
+                                                                        <spirit:field>
+                                        <spirit:name>uart_ctrl1</spirit:name>
+                                        <spirit:bitOffset>2</spirit:bitOffset>
+                                                <spirit:bitWidth>2</spirit:bitWidth>
+                                            <spirit:access>read-only</spirit:access>
+                                    </spirit:field>
+                                                                        <spirit:field>
+                                        <spirit:name>uart_ctrl2</spirit:name>
+                                        <spirit:bitOffset>4</spirit:bitOffset>
+                                                <spirit:bitWidth>2</spirit:bitWidth>
+                                            <spirit:access>read-only</spirit:access>
+                                    </spirit:field>
+                                                                        <spirit:field>
+                                        <spirit:name>uart_ctrl3</spirit:name>
+                                        <spirit:bitOffset>6</spirit:bitOffset>
+                                                <spirit:bitWidth>2</spirit:bitWidth>
+                                            <spirit:access>read-only</spirit:access>
+                                    </spirit:field>
+                                                                        <spirit:field>
+                                        <spirit:name>uart_ctrl4</spirit:name>
+                                        <spirit:bitOffset>8</spirit:bitOffset>
+                                                <spirit:bitWidth>2</spirit:bitWidth>
+                                            <spirit:access>read-write</spirit:access>
+                                    </spirit:field>
+                                                                        <spirit:field>
+                                        <spirit:name>uart_ctrl5</spirit:name>
+                                        <spirit:bitOffset>10</spirit:bitOffset>
+                                                <spirit:bitWidth>2</spirit:bitWidth>
+                                            <spirit:access>read-only</spirit:access>
+                                    </spirit:field>
+                                                                        <spirit:field>
+                                        <spirit:name>uart_ctrl6</spirit:name>
+                                        <spirit:bitOffset>12</spirit:bitOffset>
+                                                <spirit:bitWidth>2</spirit:bitWidth>
+                                            <spirit:access>read-only</spirit:access>
+                                    </spirit:field>
+                                                                        <spirit:field>
+                                        <spirit:name>uart_ctrl7</spirit:name>
+                                        <spirit:bitOffset>14</spirit:bitOffset>
+                                                <spirit:bitWidth>6</spirit:bitWidth>
+                                            <spirit:access>read-only</spirit:access>
+                                    </spirit:field>
+                                                                        <spirit:field>
+                                        <spirit:name>uart_ctrl8</spirit:name>
+                                        <spirit:bitOffset>20</spirit:bitOffset>
+                                                <spirit:bitWidth>12</spirit:bitWidth>
+                                            <spirit:access>read-only</spirit:access>
+                                    </spirit:field>
+                                                                 </spirit:register>
+                                                         <spirit:register>
+                                <spirit:name>uart_dat</spirit:name>
+                                    <spirit:addressOffset>0x0008</spirit:addressOffset>
+                                    <spirit:size>32</spirit:size>
+                                    <spirit:reset>
+                                        <spirit:value>6295311</spirit:value>
+                                    </spirit:reset>
+
+                                                                        <spirit:field>
+                                        <spirit:name>uart_dat0</spirit:name>
+                                        <spirit:bitOffset>0</spirit:bitOffset>
+                                                <spirit:bitWidth>1</spirit:bitWidth>
+                                            <spirit:access>read-write</spirit:access>
+                                    </spirit:field>
+                                                                        <spirit:field>
+                                        <spirit:name>uart_dat1</spirit:name>
+                                        <spirit:bitOffset>1</spirit:bitOffset>
+                                                <spirit:bitWidth>1</spirit:bitWidth>
+                                            <spirit:access>read-only</spirit:access>
+                                    </spirit:field>
+                                                                        <spirit:field>
+                                        <spirit:name>uart_dat2</spirit:name>
+                                        <spirit:bitOffset>2</spirit:bitOffset>
+                                                <spirit:bitWidth>6</spirit:bitWidth>
+                                            <spirit:access>read-only</spirit:access>
+                                    </spirit:field>
+                                                                        <spirit:field>
+                                        <spirit:name>uart_dat3</spirit:name>
+                                        <spirit:bitOffset>8</spirit:bitOffset>
+                                                <spirit:bitWidth>2</spirit:bitWidth>
+                                            <spirit:access>read-only</spirit:access>
+                                    </spirit:field>
+                                                                        <spirit:field>
+                                        <spirit:name>uart_dat4</spirit:name>
+                                        <spirit:bitOffset>10</spirit:bitOffset>
+                                                <spirit:bitWidth>11</spirit:bitWidth>
+                                            <spirit:access>read-write</spirit:access>
+                                    </spirit:field>
+                                                                        <spirit:field>
+                                        <spirit:name>uart_dat5</spirit:name>
+                                        <spirit:bitOffset>21</spirit:bitOffset>
+                                                <spirit:bitWidth>11</spirit:bitWidth>
+                                            <spirit:access>read-only</spirit:access>
+                                    </spirit:field>
+                                                                 </spirit:register>
+                                         </spirit:addressBlock>
+            
+
         </spirit:memoryMap>
     </spirit:memoryMaps>
 </spirit:component>

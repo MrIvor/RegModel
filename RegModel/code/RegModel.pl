@@ -13,6 +13,7 @@ use Getopt::Long;
 use Spreadsheet::Read;
 use lib "$Bin";
 use Register;
+use Block;
 my %args;
 GetOptions(\%args,
            "input=s",
@@ -37,70 +38,90 @@ my @rows = Spreadsheet::Read::rows ($book->[1]);
 splice @rows, 0, 1;
 my $baseaddr;
 my $block_name;
-my (@registers, $register, $i);
+my (@registers, $register, $i, @blocks, $block);
 my ($pre_max_range, $pre_min_range);
-$i=0;
 my $bitn=0;
 my $pre_block_name;
 my $pre_reg_name;
 my $first_reg = 0;
+my @rows_tmp;
+my @name_pos;
+my $name_num;
+$i=0;
+$name_num = 0;
 foreach my $row (@rows) {
-  if($row->[0]){  
-    $block_name = validate_blkname($row->[0]); 
-    $baseaddr = validate_baseaddr($row->[1]);  
-    $bitn = 0;
+  if($row->[0]){
+    $name_num++;
+    push @name_pos, $i;
   }
-  elsif($row->[2]) {  
-        if($first_reg == 1 && $pre_max_range != 31) {
-          die "pls check $pre_block_name -> $pre_reg_name -> bit range is not 0 to 31 !!! \n"
-        }
-        if($register) {
-            push @registers, $register->deref();
-        }
-        validate_register($row);
-        $register = new Register(
-            $block_name,
-            $row->[2],  
-            $row->[3]  
-        );
-        $pre_block_name = $block_name;
-        $pre_reg_name = $row->[2];
-        $first_reg = 1;
-    } else {
-        validate_field($row);
-        my ($bit_offset, $width, $max_range, $min_range) = Register::parse_range($row->[4], $pre_block_name, $pre_reg_name);  #bit range
-        $register->add_field(
-            $row->[3], 
-            $bit_offset,
-            $width,
-            $row->[5], 
-            $row->[6]  
-        );
-        print("bitn : $bitn \n");
-        if($bitn > 0) {
-          if($min_range != $pre_max_range + 1) {
-            die "pls check $block_name -> $pre_reg_name -> field $bitn\n";
-          }
-        }
-        $pre_max_range = $max_range;
-        $pre_min_range = $min_range;
-        $bitn++;
+  $i++;
+}
+push @name_pos, $i;
+for( my $a = 0; $a < $name_num; $a = $a + 1 ){
+  @rows_tmp = @rows[$name_pos[$a]..$name_pos[$a+1]-1];
+  $i=0;
+  undef $register;
+  undef $block;
+  foreach my $row (@rows_tmp) {
+    if(!$row->[0] && !$row->[1] && !$row->[2] && !$row->[3]){ next;}
+    if($row->[0]){
+      $block_name = validate_blkname($row->[0]);
+      $baseaddr = validate_baseaddr($row->[1]);
+      $block = new Block($block_name, $baseaddr);
     }
-    $i++
+    elsif($row->[2]) {
+          if($first_reg == 1 && $pre_max_range != 31) {
+            die "pls check $pre_block_name -> $pre_reg_name -> bit range is not 0 to 31 !!! \n"
+          }
+          if($register) {
+            $block->add_reg($register->deref());
+          }
+          validate_register($row);
+          $register = new Register(
+              $block_name,
+              $row->[2],
+              $row->[3]
+          );
+          $pre_block_name = $block_name;
+          $pre_reg_name = $row->[2];
+          $first_reg = 1;
+          $bitn = 0;
+      } else {
+          validate_field($row);
+          my ($bit_offset, $width, $max_range, $min_range) = Register::parse_range($row->[4], $pre_block_name, $pre_reg_name);
+          $register->add_field(
+              $row->[3],
+              $bit_offset,
+              $width,
+              $row->[5],
+              $row->[6]
+          );
+          if($bitn > 0) {
+            if($min_range != $pre_max_range + 1) {
+              print "min_range : $min_range;  $pre_max_range ;  $bitn\n";
+              die "pls check $block_name -> $pre_reg_name -> field $bitn\n";
+            }
+          }
+          $pre_max_range = $max_range;
+          $pre_min_range = $min_range;
+          $bitn++;
+      }
+      $i++
+  }
+  if($pre_max_range != 31) {
+    die "pls check $pre_block_name -> $pre_reg_name -> bit range is not 0 to 31 !!! \n"
+  }
+  $block->set_range();
+  $block->add_reg($register->deref());
+  push @blocks, $block->deref();
 }
-if($pre_max_range != 31) {
-  die "pls check $pre_block_name -> $pre_reg_name -> bit range is not 0 to 31 !!! \n"
-}
-
-push @registers, $register->deref();
 
 my $tt = Template->new(ABSOLUTE => 1,RELATIVE => 1);
 my $templateData = {
-    block_name => $block_name,
-    baseaddr => $baseaddr,
-    range => scalar @registers,
-    registers => \@registers
+  blocks => \@blocks
 };
+
+
 my $size = scalar(@error);
 if ($size > 0) {
     print "<errors>\n";

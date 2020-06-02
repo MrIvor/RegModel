@@ -18,6 +18,9 @@ Mail: qf.sun@foxmail.com
    su - 
 * bring up CPAN tool
    perl -e shell -MCPAN
+* change to Ali source
+   o conf urllist push https://mirrors.aliyun.com/CPAN/
+   o conf commit
 * install module
    install Spreadsheet::Read
    install Spreadsheet::ParseExcel
